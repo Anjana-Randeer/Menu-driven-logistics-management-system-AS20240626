@@ -1,33 +1,49 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
-int cityManagement(char *cityNames,int x);
+#define MAX_CITIES 30
 
-int cityManagement(char *cityNames,int x)
-{
-    printf("Type \"Done\" when complete entering the data");
 
-}
+void cityMenu();
+void distanceMenu();
+void deliveryMenu();
+void reportMenu();
 
 int main()
 {
     int choice;
-    char *cityNames[30][50];
-    int x=30;
-
-    printf("---Logistics Management System---\n");
-    printf("\n---------------------------------\n");
-    printf("\n01. Manage Cities\n");
-    printf("02. Manage Distances\n");
-    printf("03. New delivery request\n");
-    printf("04. Cost, Time, and Fuel Calculations\n");
-    printf("05. Find Least-Cost Route for a Delivery\n");
-    printf("06. View Performance Reports\n");
-    printf("07. Exit\n");
-
-    printf("\nEnter your choice:");
-    scanf("%d",&choice);
-
+    while (1)
+    {
+        printf("\n========== LOGISTICS MANAGEMENT SYSTEM ==========\n\n");
+        printf("1. City Management\n");
+        printf("2. Distance Management\n");
+        printf("3. New Delivery\n");
+        printf("4. Reports\n");
+        printf("0. Exit\n");
+        printf("\nEnter choice: ");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            cityMenu();
+            break;
+        case 2:
+            distanceMenu();
+            break;
+        case 3:
+            deliveryMenu();
+            break;
+        case 4:
+            reportMenu();
+            break;
+        case 0:
+            printf("Exiting...\n");
+            return 0;
+        default:
+            printf("Invalid choice!!\n");
+        }
+    }
     return 0;
-
 }
