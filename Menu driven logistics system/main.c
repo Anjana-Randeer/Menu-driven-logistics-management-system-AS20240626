@@ -4,6 +4,13 @@
 #include <math.h>
 
 #define MAX_CITIES 30
+#define MAX_DELIVERIES 50
+#define FUEL_PRICE 310.0
+
+char cities[MAX_CITIES][50];
+int distanceMatrix[MAX_CITIES][MAX_CITIES];
+int cityCount = 0;
+
 
 
 void cityMenu();
@@ -14,6 +21,8 @@ void addCity();
 void renameCity();
 void removeCity();
 void displayCities();
+void editDistance();
+void displayDistanceTable();
 
 int main()
 {
@@ -146,6 +155,74 @@ void displayCities()
     for (int i = 0; i < cityCount; i++)
     {
         printf("%d. %s\n", i+1, cities[i]);
+    }
+}
+
+void distanceMenu()
+{
+    int choice;
+    while (1)
+    {
+        printf("\n---- Distance Management ----\n\n");
+        printf("1. Edit Distance\n");
+        printf("2.Display Distance Table\n");
+        printf("0.Back\n");
+        printf("\nEnter your Choice:");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            editDistance();
+            break;
+        case 2:
+            displayDistanceTable();
+            break;
+        case 0:
+            return;
+        default:
+            printf("Invalid choice!\n");
+        }
+    }
+}
+
+void editDistance()
+{
+    if (cityCount < 2)
+    {
+        printf("At least 2 cities needed.\n");
+        return;
+    }
+    displayCities();
+    int a, b, distance;
+    printf("Enter source city index: ");
+    scanf("%d", &a);
+    printf("Enter destination city index: ");
+    scanf("%d", &b);
+    if (a == b)
+    {
+        printf("Cannot set distance from city to itself.\n");
+        return;
+    }
+    printf("Enter distance (km): ");
+    scanf("%d", &d);
+    distanceMatrix[a-1][b-1] = distanceMatrix[b-1][a-1] = distance;
+    printf("Distance updated.\n");
+}
+
+void displayDistanceTable()
+{
+    printf("\nDistance Table (km):\n\t");
+    for (int i = 0; i < cityCount; i++)
+        printf("%s\t\t", cities[i]);
+    printf("\n");
+    for (int i = 0; i < cityCount; i++)
+    {
+        printf("%s\t", cities[i]);
+        for (int j = 0; j < cityCount; j++)
+        {
+            printf("%d\t\t", distanceMatrix[i][j]);
+        }
+        printf("\n");
     }
 }
 
