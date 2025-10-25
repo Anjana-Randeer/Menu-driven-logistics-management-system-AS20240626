@@ -46,6 +46,7 @@ void newDelivery();
 double findDistance(int src, int dest);
 void calculateCost(Delivery *d);
 void showDeliverySummary(Delivery d);
+void showReports();
 
 int main()
 {
@@ -53,7 +54,7 @@ int main()
     while (1)
     {
         printf("\n========== LOGISTICS MANAGEMENT SYSTEM ==========\n\n");
-        printf("\n-------------------------------------------------\n")
+        printf("\n-------------------------------------------------\n");
         printf("1. City Management\n");
         printf("2. Distance Management\n");
         printf("3. New Delivery\n");
@@ -230,7 +231,7 @@ void editDistance()
         return;
     }
     printf("Enter distance (km): ");
-    scanf("%d", &d);
+    scanf("%d", &distance);
     distanceMatrix[a-1][b-1] = distanceMatrix[b-1][a-1] = distance;
     printf("Distance updated.\n");
 }
@@ -351,6 +352,27 @@ void calculateCost(Delivery *d)
     d->totalCost = totalCost;
     d->profit = profit;
     d->charge = totalCost + profit;
+}
+
+void showDeliverySummary(Delivery d)
+{
+    Vehicle v = vehicles[d.vehicleType];
+    printf("\n====================================================\n");
+    printf("============DELIVERY COST ESTIMATION=================\n");
+    printf("-----------------------------------------------------\n");
+    printf("From: %s\n",cities[d.src]);
+    printf("To: %s\n",cities[d.dest]);
+    printf("Distance: %.2f km\n", d.distance);
+    printf("Vehicle: %s\n", v.name);
+    printf("Weight: %.2f kg\n", d.weight);
+    printf("-----------------------------------------------------\n");
+    printf("Base Cost: %.2f LKR\n", d.cost);
+    printf("Fuel Used: %.2f L\n", d.fuelUsed);
+    printf("Total Operational Cost: %.2f LKR\n", d.totalCost);
+    printf("Profit: %.2f LKR\n", d.profit);
+    printf("Customer Charge: %.2f LKR\n",d.charge);
+    printf("Estimated Time: %.2f hours\n",d.time);
+    printf("=====================================================\n");
 }
 
 
