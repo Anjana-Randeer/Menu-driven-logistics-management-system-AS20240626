@@ -21,7 +21,10 @@ typedef struct
 typedef struct
 {
     int src, dest, vehicleType;
-    double weight, distance, cost, fuelUsed, totalCost, profit, charge, time;
+    double weight, distance;
+    double cost, fuelUsed;
+    double totalCost, profit;
+    double charge, time;
 } Delivery;
 
 char cities[MAX_CITIES][50];
@@ -60,7 +63,8 @@ int main()
     int choice;
     while (1)
     {
-        printf("\n========== LOGISTICS MANAGEMENT SYSTEM ==========\n\n");
+        printf("\n========== LOGISTICS MANAGEMENT SYSTEM ==========\n");
+        printf("-------------------------------------------------\n");
         printf("1. City Management\n");
         printf("2. Distance Management\n");
         printf("3. New Delivery\n");
@@ -180,7 +184,7 @@ void removeCity()
         }
     }
     cityCount--;
-    printf("City removed.\n");
+    printf("City removed sucessfully.\n");
 }
 
 void displayCities()
@@ -218,7 +222,7 @@ void distanceMenu()
         case 0:
             return;
         default:
-            printf("Invalid!\n");
+            printf("Invalid choice!\n");
         }
     }
 }
