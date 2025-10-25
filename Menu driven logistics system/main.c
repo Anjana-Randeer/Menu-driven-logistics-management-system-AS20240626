@@ -53,6 +53,7 @@ int main()
     while (1)
     {
         printf("\n========== LOGISTICS MANAGEMENT SYSTEM ==========\n\n");
+        printf("\n-------------------------------------------------\n")
         printf("1. City Management\n");
         printf("2. Distance Management\n");
         printf("3. New Delivery\n");
@@ -90,6 +91,7 @@ void cityMenu()
     while (1)
     {
         printf("\n---- City Management ----\n");
+        printf("\n=========================\n");
         printf("01. Add City\n ");
         printf("02.Rename City\n");
         printf("03.Remove City\n");
@@ -187,6 +189,7 @@ void distanceMenu()
     while (1)
     {
         printf("\n---- Distance Management ----\n\n");
+        printf("\n=============================\n");
         printf("1. Edit Distance\n");
         printf("2.Display Distance Table\n");
         printf("0.Back\n");
@@ -255,6 +258,7 @@ void deliveryMenu()
     while (1)
     {
         printf("\n\n---- Delivery Menu ----\n");
+        printf("\n=========================\n");
         printf("1. New Delivery Request\n");
         printf("0. Back\n");
         printf("\nEnter your choice:");
