@@ -7,9 +7,27 @@
 #define MAX_DELIVERIES 50
 #define FUEL_PRICE 310.0
 
+typedef struct
+{
+    char name[20];
+    int capacity;
+    double ratePerKm;
+    double speed;
+    double efficiency;
+} Vehicle;
+
+
+typedef struct
+{
+    int src, dest, vehicleType;
+    double weight, distance, cost, fuelUsed, totalCost, profit, charge, time;
+} Delivery;
+
 char cities[MAX_CITIES][50];
 int distanceMatrix[MAX_CITIES][MAX_CITIES];
 int cityCount = 0;
+Delivery deliveries[MAX_DELIVERIES];
+int deliveryCount = 0;
 
 
 
@@ -23,6 +41,11 @@ void removeCity();
 void displayCities();
 void editDistance();
 void displayDistanceTable();
+void displayDistanceTable();
+void newDelivery();
+double findDistance(int src, int dest);
+void calculateCost(Delivery *d);
+void showDeliverySummary(Delivery d);
 
 int main()
 {
@@ -225,5 +248,86 @@ void displayDistanceTable()
         printf("\n");
     }
 }
+
+void deliveryMenu()
+{
+    int choice;
+    while (1)
+    {
+        printf("\n\n---- Delivery Menu ----\n");
+        printf("1. New Delivery Request\n");
+        printf("0. Back\n");
+        printf("\nEnter your choice:");
+        scanf("%d", &choice);
+        switch (choice)
+        {
+        case 1:
+            newDelivery();
+            break;
+        case 0:
+            return;
+        default:
+            printf("Invalid choice!\n");
+        }
+    }
+}
+
+void newDelivery()
+{
+    if (deliveryCount >= MAX_DELIVERIES)
+    {
+        printf("Delivery record is full.\n");
+        return;
+    }
+
+    displayCities();
+    int src, dest, type;
+    double weight;
+    printf("Enter source city index: ");
+    scanf("%d", &src);
+    printf("Enter destination city index: ");
+    scanf("%d", &dest);
+    if (src == dest)
+    {
+        printf("Source city and destination city cannot be same.\n");
+        return;
+    }
+    printf("Enter weight (kg): ");
+    scanf("%lf", &weight);
+
+    printf("\nSelect vehicle:\n");
+    printf("\n1=Van");
+    printf("\n2=Truck");
+    printf("\n3=Lorry");
+    scanf("%d", &type);
+    if (type < 1 || type > 3)
+    {
+        printf("Invalid vehicle.\n");
+        return;
+    }
+    Vehicle v = vehicles[type - 1];
+    if (weight > v.capacity)
+    {
+        printf("Exceeds vehicle capacity (%d kg).\n", v.capacity);
+        return;
+    }
+
+    Delivery d;
+    d.src = src-1;
+    d.dest = dest-1;
+    d.vehicleType = type - 1;
+    d.weight = weight;
+    d.distance = findDistance(src, dest);
+    calculateCost(&d);
+
+    deliveries[deliveryCount++] = d;
+    showDeliverySummary(d);
+}
+
+double findDistance(int src, int dest)
+{
+    return distanceMatrix[src-1][dest-1];
+}
+
 
 
