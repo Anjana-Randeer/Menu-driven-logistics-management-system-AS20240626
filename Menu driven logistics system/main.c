@@ -70,8 +70,10 @@ int main()
         printf("3. New Delivery\n");
         printf("4. Reports\n");
         printf("0. Exit\n");
+
         printf("\nEnter choice: ");
         scanf("%d", &choice);
+
         switch (choice)
         {
         case 1:
@@ -110,8 +112,10 @@ void cityMenu()
         printf("03. Remove City\n");
         printf("04. Display Cities\n");
         printf("0 . Back\n");
+
         printf("\nEnter your choice:");
         scanf("%d", &choice);
+
         switch (choice)
         {
         case 1:
@@ -209,8 +213,10 @@ void distanceMenu()
         printf("1. Edit Distance\n");
         printf("2.Display Distance Table\n");
         printf("0.Back\n");
+
         printf("\nEnter your Choice:");
         scanf("%d", &choice);
+
         switch (choice)
         {
         case 1:
@@ -279,9 +285,10 @@ void deliveryMenu()
         printf("------------------------\n");
         printf("1. New Delivery Request\n");
         printf("0. Back\n");
-        printf("\nEnter your choice:");
 
+        printf("\nEnter your choice:");
         scanf("%d", &choice);
+
         switch (choice)
         {
         case 1:
